@@ -1,0 +1,11 @@
+﻿namespace LojaDeRoupas.Model
+{
+    public class Cadastro
+    {
+        public int Id { get; set; }
+        public string Nome { get; set; }
+        public string SobreNome { get; set; }
+        public string Email { get; set; }
+        public string Endereco { get; set; }
+    }
+}

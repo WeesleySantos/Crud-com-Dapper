@@ -1,0 +1,107 @@
+﻿@model LojaDeRoupas.Models.CadastroViewModels
+
+@{
+    ViewData["Title"] = "Cadastro";
+}
+
+<style>
+    .corTabela {
+        background-color: #808080
+    }
+
+    .paginate_button.page-item.active .page-link {
+        background-color: #808080;
+        border-color: #fff;
+    }
+</style>
+
+
+<form asp-action="Adicionar" asp-controller="Cadastro" method="post">
+
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-4">
+                <label class="col-form-label">Nome</label>
+                <input asp-for="@Model.Cadastro.Nome" class="form-control" required />
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-4">
+                <label class="col-form-label">Sobre nome</label>
+                <input asp-for="@Model.Cadastro.SobreNome" class="form-control" required />
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-4">
+                <label class="col-form-label">Email</label>
+                <input asp-for="@Model.Cadastro.Email" class="form-control" required />
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-4">
+                <label class="col-form-label">Endereco</label>
+                <input asp-for="@Model.Cadastro.Endereco" class="form-control" required />
+            </div>
+        </div>
+        <div class="row ml-1 mt-2">
+            <div>
+                <button class="btn btn-secondary" type="submit">Salvar</button>
+            </div>
+        </div>
+
+    </div>
+    <hr />
+</form>
+
+<table id="Tabela" class="table-striped" style="width:100%">
+
+    <thead class="corTabela">
+        <tr class="text-center">
+            <th>Nome</th>
+            <th>Sobre Nome</th>
+            <th>Email</th>
+            <th>Endereco</th>
+            <th>Editar</th>
+            <th>Excluir</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Cadastros)
+        {
+            <tr class="text-center">
+                <td>@item.Nome</td>
+                <td>@item.SobreNome</td>
+                <td>@item.Email</td>
+                <td>@item.Endereco</td>
+                <td>
+                    <a asp-controller="Cadastro" asp-action="Editar" asp-route-Id="@item.Id">
+                        <i class="fa fa-edit text-info check-configuracao"></i>
+                    </a>
+                </td>
+                <td class="text-center">
+                    <a asp-controller="Cadastro" asp-action="Excluir" asp-route-Id="@item.Id">
+                        <i class="fa fa-eraser text-danger check-configuracao"></i>
+                    </a>
+                </td>
+            </tr>
+        }
+
+    </tbody>
+
+</table>
+
+@section scripts{
+    <script>
+        $(document).ready(function () {
+            $('#Tabela').DataTable({
+                destroy: true,
+                language: {
+                    url: '@Url.Content("~/lib/DataTables/Portuguese-Brasil.json")'
+                },
+            })
+        });
+    </script>
+}

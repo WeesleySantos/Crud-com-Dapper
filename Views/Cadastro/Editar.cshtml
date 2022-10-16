@@ -1,0 +1,45 @@
+﻿@model LojaDeRoupas.Models.CadastroViewModels
+@{
+    ViewData["Title"] = "Editar";
+}
+
+<form asp-action="Editar" asp-controller="Cadastro" method="post">
+
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-4">
+                <label class="col-form-label">Nome</label>
+                <input asp-for="@Model.Cadastro.Nome" class="form-control" required />
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-4">
+                <label class="col-form-label">Sobre nome</label>
+                <input asp-for="@Model.Cadastro.SobreNome" class="form-control" required />
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-4">
+                <label class="col-form-label">Email</label>
+                <input asp-for="@Model.Cadastro.Email" class="form-control" required />
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-4">
+                <label class="col-form-label">Endereco</label>
+                <input asp-for="@Model.Cadastro.Endereco" class="form-control" required />
+            </div>
+        </div>
+        <div class="row ml-1 mt-2">
+            <div>
+                <button class="btn btn-secondary" type="submit">Salvar</button>
+                <a asp-controller="Configuracao" asp-action="Index" class="btn btn-danger">Fechar</a>
+            </div>
+        </div>
+    </div>
+    <input asp-for="@Model.Cadastro.Id" hidden />
+    <hr />
+</form>
